@@ -108,6 +108,7 @@ def main():
             humidity,temperature,radon_1day = connect_and_read(device_address)
         except btle.BTLEException as e:
             print('Bluetooth error:', e, file=sys.stderr)
+            time.sleep(5)
             humidity,temperature,radon_1day = connect_and_read(device_address)
         else:
             '''print('{.2f}\t{.2f}\t{radon_1day}'.format(
