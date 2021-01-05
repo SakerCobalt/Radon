@@ -104,8 +104,12 @@ def main():
             humidity,temperature,radon_1day = connect_and_read(device_address)
         except CouldNotConnectError:
             print('Could not connect', file=sys.stderr)
-            time.sleep(5)
-            humidity,temperature,radon_1day = connect_and_read(device_address)
+            time.sleep(10)
+            try:
+                humidity,temperature,radon_1day = connect_and_read(device_address)
+            except:
+                time.sleep(10)
+                humidity,temperature,radon_1day = connect_and_read(device_address)
         except btle.BTLEException as e:
             print('Bluetooth error:', e, file=sys.stderr)
             time.sleep(5)
